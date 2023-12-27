@@ -1,7 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
-const INFURA_API_KEY = "ce01f26c3ae247d1924c96274aae0337";
+const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const SEPOLIA_PRIVATE_KEY = process.env.SECRET;
 
 module.exports = {
