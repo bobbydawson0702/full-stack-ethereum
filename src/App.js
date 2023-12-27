@@ -4,18 +4,21 @@ import { ethers } from 'ethers'
 import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json'
 import Token from './artifacts/contracts/Token.sol/Token.json'
 
-const greeterAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-const tokenAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+const greeterAddress = "0xbF248519b7b018CEE864E6AcBa81cdA0Dd5f34bE"
+const tokenAddress = "0x02FEe126Da148288e30241850c9cfA7e10E82066"
 
 function App() {
+  // store greeting in local state
   const [greeting, setGreetingValue] = useState()
   const [userAccount, setUserAccount] = useState()
   const [amount, setAmount] = useState()
 
+  // request access to the user's MetaMask account
   async function requestAccount() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
   }
 
+  // call the smart contract, read the current greeting value
   async function fetchGreeting() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -40,6 +43,7 @@ function App() {
     }
   }
 
+  // call the smart contract, send an update
   async function setGreeting() {
     if (!greeting) return
     if (typeof window.ethereum !== 'undefined') {

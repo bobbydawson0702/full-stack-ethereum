@@ -1,17 +1,21 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
+
+const INFURA_API_KEY = "ce01f26c3ae247d1924c96274aae0337";
+const SEPOLIA_PRIVATE_KEY = process.env.SECRET;
 
 module.exports = {
-  solidity: "0.8.9",
+  solidity: "0.8.20",
   paths: {
-    artifacts: './src/artifacts',
+    artifacts: "./src/artifacts",
   },
   networks: {
     hardhat: {
-      chainId: 1337
+      chainId: 1337,
     },
-    ropsten: {
-      url: "https://ropsten.infura.io/v3/903ad3bdef654d9ba0a0d28b2b5d6edf",
-      accounts: [`0x437cf0472fbe1f6e654b432b43fbcd0e21979f2c721cf2666648ce66fe2fb4e8`]
-    }
-  }
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [SEPOLIA_PRIVATE_KEY],
+    },
+  },
 };
